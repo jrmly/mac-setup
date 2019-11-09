@@ -61,6 +61,7 @@ cd ~ && mkdir projects
 
 # Create ansible virtual environment
 cd ~/projects
+pip3 install --user pipenv
 pyenv myansible
 
 # Activate ansible virtual environment
