@@ -39,16 +39,16 @@ sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 # to undo
 # sudo chmod 755 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 
-fancy_echo "Disabling OS X Gate Keeper"
-echo "(You'll be able to install any app you want from here on, not just Mac App Store apps)"
-sudo spctl --master-disable
-sudo defaults write /var/db/SystemPolicy-prefs.plist enabled -string no
-defaults write com.apple.LaunchServices LSQuarantine -bool false
+# fancy_echo "Disabling OS X Gate Keeper"
+# echo "(You'll be able to install any app you want from here on, not just Mac App Store apps)"
+# sudo spctl --master-disable
+# sudo defaults write /var/db/SystemPolicy-prefs.plist enabled -string no
+# defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-fancy_echo "Disabling OS X Crash Reporter"
-sudo defaults write com.apple.CrashReporter DialogType none
-launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportCrash.plist
-sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.ReportCrash.Root.plist
+# fancy_echo "Disabling OS X Crash Reporter"
+# sudo defaults write com.apple.CrashReporter DialogType none
+# launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportCrash.plist
+# sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.ReportCrash.Root.plist
 
 fancy_echo "Increasing the window resize speed for Cocoa applications"
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
@@ -95,11 +95,11 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input
 ###############################################################################
 
-fancy_echo "Increasing sound quality for Bluetooth headphones/headsets"
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+# fancy_echo "Increasing sound quality for Bluetooth headphones/headsets"
+# defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
-fancy_echo "Enabling full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+# fancy_echo "Enabling full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
+# defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 fancy_echo "Disabling press-and-hold for keys in favor of a key repeat"
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
@@ -114,8 +114,8 @@ fancy_echo "Setting trackpad & mouse speed to a reasonable number"
 defaults write -g com.apple.trackpad.scaling 2
 defaults write -g com.apple.mouse.scaling 2.5
 
-fancy_echo "Turn off keyboard illumination when computer is not used for 5 minutes"
-defaults write com.apple.BezelServices kDimTime -int 300
+fancy_echo "Turn off keyboard illumination when computer is not used for 15 minutes"
+defaults write com.apple.BezelServices kDimTime -int 900
 
 ###############################################################################
 # Screen
@@ -170,7 +170,6 @@ fancy_echo "Enabling snap-to-grid for icons on the desktop and in other icon vie
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
-
 fancy_echo "Disable disk image verification"
 defaults write com.apple.frameworks.diskimages skip-verify -bool true
 defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
@@ -181,17 +180,15 @@ defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 
-fancy_echo "Use list view in all Finder windows by default"
-# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
-defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
-
+# fancy_echo "Use list view in all Finder windows by default"
+# # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+# defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 fancy_echo "Disable the warning before emptying the Trash"
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
 fancy_echo "Empty Trash securely by default"
 defaults write com.apple.finder EmptyTrashSecurely -bool true
-
 
 ###############################################################################
 # Dock & Mission Control
@@ -220,11 +217,6 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 fancy_echo "Show indicator lights for open applications in the Dock"
 defaults write com.apple.dock show-process-indicators -bool true
 
-fancy_echo "Wipe all (default) app icons from the Dock"
-# This is only really useful when setting up a new Mac, or if you don't use
-# the Dock to launch apps.
-defaults write com.apple.dock persistent-apps -array
-
 fancy_echo "Don't animate opening applications from the Dock"
 defaults write com.apple.dock launchanim -bool false
 
@@ -247,7 +239,8 @@ defaults write com.apple.dock dashboard-in-overlay -bool true
 fancy_echo "Don't automatically rearrange Spaces based on most recent use"
 defaults write com.apple.dock mru-spaces -bool false
 
-
+fancy_echo "Place dock on right side"
+defaults write com.apple.dock orientation -string right
 
 
 ###############################################################################

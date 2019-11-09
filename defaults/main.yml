@@ -1,0 +1,79 @@
+homebrew_install_path: /usr/local/homebrew
+homebrew_installed_packages:
+  - socat
+  - ipcalc
+  - ipv6calc
+  - python3
+  - wget
+  - youtube-dl
+  - tmux
+  - xz
+  - git
+  - mas
+  
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - karabiner-elements
+  - 1password
+  - 1password-cli
+  - google-chrome
+  - firefox
+  - visual-studio-code
+  - docker
+  - dropbox
+  - slack
+  - microsoft-office
+  - skype-for-business
+  - audiobook-builder
+  - backblaze
+  - backblaze-downloader
+  - keyboard-maestro
+  - hazel
+  - launchbar
+  - virtualbox
+  - virtualbox-extension-pack
+  - carbon-copy-cloner
+  - transmit
+  - transmit-disk
+  - iterm2
+  - calibre
+  - adobe-digital-editions
+  - fluid
+
+dockitems_to_remove:
+  - Launchpad
+  - Mail
+  - Safari
+  - Contacts
+  - Notes
+  - Reminders
+  - Maps
+  - Photos
+  - Messages
+  - FaceTime
+  - iTunes
+  - iBooks
+  - App Store
+  - Calendar
+  - Siri
+
+dockitems_to_persist:
+  - name: Safari
+    path: "/Applications/Safari.app"
+    pos: 1
+  - name: Google Chrome
+    path: "/Applications/Google Chrome.app"
+    pos: 2
+  - name: Firefox
+    path: "/Applications/Firefox.app"
+    pos: 3
+  - name: iTerm
+    path: /Applications/iTerm.app
+    pos: 4
+
+brew_taps:
+  - caskroom/cask
+  - caskroom/versions # for sublime-text3
+  - homebrew/binary
+  - homebrew/dupes # gnu grep
+  - homebrew/versions 
