@@ -49,24 +49,42 @@ else
   fancy_echo "Homebrew already installed. Skipping."
 fi
 
-# [Install Ansible](http://docs.ansible.com/intro_installation.html).
+# Update PATH Environment variable
+export PATH=/usr/local/bin:$PATH
+
+# Install Python3
+fancy_echo "Installing Python3 ..."
+brew install python3
+
+# Make ~/projects directory
+cd ~ && mkdir projects
+
+# Create ansible virtual environment
+cd ~/projects
+pyenv myansible
+
+# Activate ansible virtual environment
+source ~/projects/myansible/bin/Activate
+
+# Install ansible using python3
 if ! command -v ansible >/dev/null; then
   fancy_echo "Installing Ansible ..."
-  brew install ansible 
+  pip install ansible 
 else
   fancy_echo "Ansible already installed. Skipping."
 fi
 
 # Clone the repository to your local drive.
-if [ -d "./laptop" ]; then
-  fancy_echo "Laptop repo dir exists. Removing ..."
-  rm -rf ./laptop/
+cd ~/projects
+if [ -d "./mac-setup" ]; then
+  fancy_echo "mac-setup repo dir exists. Removing ..."
+  rm -rf ./mac-setup/
 fi
 fancy_echo "Cloning laptop repo ..."
-git clone https://github.com/siyelo/laptop.git 
+git clone https://github.com/jrmly/mac-setup.git 
 
 fancy_echo "Changing to laptop repo dir ..."
-cd laptop
+cd mac-setup
 
 # Run this from the same directory as this README file. 
 fancy_echo "Running ansible playbook ..."
